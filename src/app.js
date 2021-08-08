@@ -10,6 +10,6 @@ app.get('/', (req, res) => {
     res.json('hello world')
 })
 
-app.use(productRoutes)
+app.use('/products', productRoutes)
 
 export default app;
