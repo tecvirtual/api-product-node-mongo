@@ -38,11 +38,9 @@ export const isModerator = async(req, res, next) => {
                 //return;
             }
         });*/
-        console.log(roles)
-        for (let i = 0; i <= roles.length; i++) {          
-            console.log("prueba")
+        //console.log(roles)
+        for (let i = 0; i <= roles.length; i++) {    
             if(roles[i].name === "moderator"){
-                console.log("yes is moderator")
                 next()
                 return;
             }
@@ -60,12 +58,12 @@ export const isAdmin = async(req, res, next) => {
         
         const roles = await Role.find({_id: {$in : user.roles }})    
         
-        roles.forEach(element => {
-            if(element.name === "admin"){
-                next();
+        for (let i = 0; i <= roles.length; i++) {    
+            if(roles[i].name === "admin"){
+                next()
                 return;
             }
-        });
+        }
         
         return res.status(403).json({ message: "Required Admin role"})
     } catch (error) {
